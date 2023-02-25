@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Titulo from './components/titulo';
 
-function App() {
+function AlunosCrud() {
 
   let titulo = "Curso de FronEnd React";
   let [txtAluno, setTxtAluno] = useState("");
@@ -115,4 +115,4 @@ function App() {
     </div>
   );
 }
-export default App;
+export default AlunosCrud;
