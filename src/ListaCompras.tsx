@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
 import { ItemCompra } from './models/ItemCompra';
-
+import './ListaCompras.css';
 function ListaCompras() {
 
   let [txtItemCompra, setTxtItemCompra] = useState("");
   let [txtItemQuant, setTxtItemQuant] = useState(1);
-
 
   let [txtFilter, setTxtFilter] = useState("");
   let [items, setItems] = useState<ItemCompra[]>([])
@@ -21,17 +20,16 @@ function ListaCompras() {
     setIndexEdit(-1);
   }
 
- 
+
   function salvarOuAtualizar() {
-    if(indexEdit==-1){
+    if (indexEdit == -1) {
       salvar();
-    }else{
+    } else {
       atualizar();
     }
   }
 
   function salvar() {
-    debugger;
     // find busca 1 elemento na lista com uma condicao 
     let resultado = items.find(e => e.nome.toLowerCase() == txtItemCompra.toLowerCase());
     if (resultado == undefined) {
@@ -57,8 +55,12 @@ function ListaCompras() {
     }
   }
 
-
-
+  function getFilterItems(){
+    if (txtFilter){
+      return items.filter(e=>e.nome.toLowerCase().includes(txtFilter.toLowerCase()) )
+    }
+    return items;
+  }
 
   return (
     <div className="App">
@@ -79,31 +81,18 @@ function ListaCompras() {
       <br />
       <h2>Buscar</h2>
       <input type="text" onChange={e => setTxtFilter(e.target.value)}></input>
-
-      {
-        txtFilter.length > 0 ?
-
-          items.filter(e => e.nome.toLowerCase().includes(txtFilter.toLowerCase())).map((item, index) => {
-            return (
-              <div  key={index}>
-                  <span>{item.nome}</span>  -  <span>{item.quant}</span>
-               
-              </div>
-            )
-          })
-
-          :
-
-          items.map((item, index) => {
-            return (
-              <div  key={index}>
-                 <span> {item.nome}</span> -  <span>{item.quant}</span>
-
-              </div>
-            )
-          })
-
-      }
+      <table>
+        <tr> <th>Produto</th>  <th>Quantidade</th> </tr>
+        <tbody>
+          {
+            getFilterItems().map((item, index) => {
+              return (
+                <tr> <td>{item.nome}</td>  <td>{item.quant}</td> </tr>
+              )
+            })
+          }
+        </tbody>
+      </table>
     </div>
   );
 }
