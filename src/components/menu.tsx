@@ -22,7 +22,22 @@ export function Menu() {
                             Alunos
                         </Link>
                     </li>
+                    <li>
+                        <Link to="/pg1" >
+                            Pagina 1
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/pg2" >
+                            Pagina 2
+                        </Link>
+                    </li>
 
+                    <li>
+                        <Link to="/componentMaterial" >
+                            Material
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </>
