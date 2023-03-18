@@ -69,8 +69,7 @@ function AlunosCrud() {
   return (
     <div className="App">
       <h1>{titulo}</h1>
-      <Titulo></Titulo>
-      <h2>Presentes</h2>
+      <Titulo titulo={titulo}></Titulo>
       <h5>Aluno: {txtAluno}</h5>
       <input type="text" onKeyDown={onEnter} value={txtAluno} onChange={e => setTxtAluno(e.target.value)}></input>
       {/* condicao ?  se verdadeiro : se falso */}

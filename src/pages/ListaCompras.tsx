@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import './App.css';
-import { ItemCompra } from './models/ItemCompra';
+import Titulo from '../components/titulo';
+import { ItemCompra } from '../models/ItemCompra';
+import '../App.css';
 import './ListaCompras.css';
+import { Menu } from '../components/menu';
 function ListaCompras() {
 
   let [txtItemCompra, setTxtItemCompra] = useState("");
@@ -22,7 +24,7 @@ function ListaCompras() {
 
 
   function salvarOuAtualizar() {
-    if (indexEdit == -1) {
+    if (indexEdit === -1) {
       salvar();
     } else {
       atualizar();
@@ -31,8 +33,8 @@ function ListaCompras() {
 
   function salvar() {
     // find busca 1 elemento na lista com uma condicao 
-    let resultado = items.find(e => e.nome.toLowerCase() == txtItemCompra.toLowerCase());
-    if (resultado == undefined) {
+    let resultado = items.find(e => e.nome.toLowerCase() === txtItemCompra.toLowerCase());
+    if (resultado === undefined) {
       // Instanciando Objeto Item Compra
       const item = new ItemCompra();
       // Setando valor do texto para atributo nome
@@ -49,7 +51,6 @@ function ListaCompras() {
 
 
   function onEnter(event: any) {
-    //console.log(event.keyCode) ==13
     if (event.key === 'Enter') {
       salvarOuAtualizar();
     }
@@ -64,7 +65,8 @@ function ListaCompras() {
 
   return (
     <div className="App">
-      <h2>Lista de Compras</h2>
+      <Titulo titulo='Lista de Compras'></Titulo>
+      <Menu></Menu>
       <h5>Item: {txtItemCompra}</h5>
       <input type="text" onKeyDown={onEnter} value={txtItemCompra} onChange={e => setTxtItemCompra(e.target.value)}></input>
       <input type="number" onKeyDown={onEnter} value={txtItemQuant} onChange={e => setTxtItemQuant(+e.target.value)}></input>

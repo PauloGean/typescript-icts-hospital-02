@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './App.css';
-import Titulo from './components/titulo';
+import '../App.css';
+import { Menu } from '../components/menu';
+import Titulo from '../components/titulo';
 
-function App() {
+function AlunosView() {
 
   let titulo = "Curso de FronEnd React";
   let [txtAluno, setTxtAluno] = useState("");
@@ -20,7 +21,7 @@ function App() {
   }
 
   function editar(item: string) {
-    const index = alunos.findIndex(e => e.toLowerCase() == item.toLowerCase())
+    const index = alunos.findIndex(e => e.toLowerCase() === item.toLowerCase())
     setIndexEdit(index)
     setTxtAluno(item);
   }
@@ -35,7 +36,7 @@ function App() {
   function salvar() {
     // find busca 1 elemento na lista com uma condicao 
     let resultado = alunos.find(e => e.toLowerCase() == txtAluno.toLowerCase());
-    if (resultado == undefined) {
+    if (resultado === undefined) {
       let novaList = [...alunos, txtAluno];
       setAlunos(novaList);
       setTxtAluno("");
@@ -68,9 +69,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>{titulo}</h1>
-      <Titulo></Titulo>
-      <h2>Presentes</h2>
+      <Titulo titulo='Presentes:'></Titulo>
+      <Menu></Menu>
       <h5>Aluno: {txtAluno}</h5>
       <input type="text" onKeyDown={onEnter} value={txtAluno} onChange={e => setTxtAluno(e.target.value)}></input>
       {/* condicao ?  se verdadeiro : se falso */}
@@ -115,4 +115,4 @@ function App() {
     </div>
   );
 }
-export default App;
+export default AlunosView;
